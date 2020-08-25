@@ -2,15 +2,16 @@ const express=require('express');
 const { route } = require('../../app');
 const router=express.Router();  
 const flightController=require('../controller/flight');
+const middleware=require('../middleware/helpers');
 
-router.post('/add',flightController.add);
+router.post('/add',middleware.verifyToken,flightController.add);
 
-router.patch('/update/:flightId',flightController.update);
+router.put('/update/:flightId',middleware.verifyToken,flightController.update);
 
-router.get('/find',flightController.get);
+router.get('/find',middleware.verifyToken,flightController.get);
 
-router.get('/findone/:flightId',flightController.getOne);
+router.get('/findone/:flightId',middleware.verifyToken,flightController.getOne);
 
-router.delete('/delete/:flightId',flightController.remove);
+router.delete('/delete/:flightId',middleware.verifyToken,flightController.remove);
 
 module.exports=router;

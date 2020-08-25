@@ -1,6 +1,7 @@
 const mongoose=require('mongoose');
 const Flight=require('../model/flight');
 
+
 exports.add=(req,res,next)=>{
     
     Flight.find({name:req.body.name})
@@ -44,7 +45,7 @@ exports.add=(req,res,next)=>{
 exports.update=(req,res,next) => {
      
      const date=new Date(req.body.date);
-     Flight.findOneAndUpdate({_id:req.params.flightId},{date:date})
+     Flight.update({_id:req.params.flightId},{date:date})
            .exec()
            .then( result => {
                res.status(200).json({
@@ -98,7 +99,8 @@ exports.remove= (req,res,next) => {
         .exec()
         .then(result => {
             res.status(200).json({
-                message:"User deleted!"
+                message:"Flight deleted!",
+                flight:result
             });
         })
         .catch(err => {

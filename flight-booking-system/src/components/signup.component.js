@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoginService from '../services/login.service';
 import Table from 'react-bootstrap/Table';
+import './signup.component.css';
 
 export class Signup extends Component {
 
@@ -103,7 +104,7 @@ export class Signup extends Component {
                    </tr>
 
                    <tr>
-                       <td><label for="genders">Choose a gender:</label></td><td><select name="genders" id="genders" value={this.state.gender} onChange={this.onChangeGender.bind(this)}>
+                       <td ><label for="genders">Choose a gender:</label></td><td align="left"><select name="genders" id="genders" value={this.state.gender} onChange={this.onChangeGender.bind(this)}>
                                                                                  <option value="female">F</option>
                                                                                  <option value="male">M</option>
                                                                                  </select> 
@@ -119,7 +120,7 @@ export class Signup extends Component {
                    </tr>
 
                    <tr>
-                       <td><label for="roles">Choose a role:</label></td><td><select name="roles" id="roles" value={this.state.role} onChange={this.onChangeRole.bind(this)}>
+                       <td><label for="roles">Choose a role:</label></td><td align="left"><select name="roles" id="roles" value={this.state.role} onChange={this.onChangeRole.bind(this)}>
                                                                                  <option value="admin">admin</option>
                                                                                  <option value="user">user</option>
                                                                                  </select> 
