@@ -1,10 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
 
-.body{
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: dimgrey;
-    
+* {
+  box-sizing: border-box;
 }
 
+
+h1,h2,h3,h4,h5,h6,label,span {
+  font-weight: 500;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+form{
+    
+    width: 600px;
+    margin-top:30px;
+    margin-bottom: 100px;
+   
+}
+
+.account{
+  text-align: center;
+}
+
+
+.body{
+   
+    display:flex;
+    justify-content: center;
+    align-items: center;
+   
+
+}
+
+.control {
+  font-weight: 400;
+}
+
+.password,
+.password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.password a {
+  color: #167bff;
+}

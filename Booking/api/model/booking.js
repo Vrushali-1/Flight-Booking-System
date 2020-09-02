@@ -2,7 +2,7 @@ const mongoose=require('mongoose');
 
 const bookingSchema=mongoose.Schema({
     _id:mongoose.Schema.Types.ObjectId,
-    id:{type:Number},
+    bookingNo:{type:String,require:true},
     user:{},
     flight:{},
     quantity:{type:Number,required:true},

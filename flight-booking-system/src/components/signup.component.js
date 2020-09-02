@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import LoginService from '../services/login.service';
-import Table from 'react-bootstrap/Table';
-import './signup.component.css';
+import Person from '@material-ui/icons/Person';
 
 export class Signup extends Component {
 
@@ -25,7 +24,6 @@ export class Signup extends Component {
             email:'',
             username:'',
             password:'',
-            role:'admin',
             failed:''
             
          }
@@ -68,18 +66,13 @@ export class Signup extends Component {
         });
     }
 
-    onChangeRole(e){
-        this.setState({
-              role:e.target.value
-        });
-    }
 
     onSubmit(e){
         e.preventDefault();
-        LoginService.register(this.state.firstname,this.state.lastname,this.state.gender,this.state.email,this.state.role,this.state.username,this.state.password)
+        LoginService.register(this.state.firstname,this.state.lastname,this.state.gender,this.state.email,this.state.username,this.state.password)
                      .then( (data) => {
                          console.log(data);
-                         this.props.history.push('/login');     
+                            this.props.history.push('/login');  
                      }) 
                      .catch((err) => {
                          this.setState({
@@ -91,62 +84,54 @@ export class Signup extends Component {
 
     render() {
         return (
-            <div className="body">
-            <form onSubmit={this.onSubmit}>
-               <Table className="table">
-               <tbody>
-                   <tr>
-                       <td>Firstname : </td><td><input type="text" name="firstname" placeholder="Enter your firstname" value={this.state.firstname} onChange={this.onChangeFirstname.bind(this)} /></td>
-                   </tr>
+           <div style={{display:"flex",
+            justifyContent : "center",
+            alignItems: "center",
+            marginBottom: "100px"}}>
+            <form className="form" onSubmit={this.onSubmit}>
+                 <div style={{textAlign: "center",
+                           marginTtop: "0px"}}>
+                <Person  style={{fontSize:100}}/>
+                </div>
+                <div className="form-group">
+                    <label>First name</label> 
+                    <input type="text" className="form-control" placeholder="First name" value={this.state.firstname} onChange={this.onChangeFirstname.bind(this)}/>
+                </div>
 
-                   <tr>
-                       <td>Lastname : </td><td><input type="text" name="lastname" placeholder="Enter your lastname"  value={this.state.lastname} onChange={this.onChangeLastname.bind(this)} /></td>
-                   </tr>
+                <div className="form-group">
+                    <label>Last name</label>
+                    <input type="text" className="form-control" placeholder="Last name" value={this.state.lastname} onChange={this.onChangeLastname.bind(this)}/>
+                </div>
 
-                   <tr>
-                       <td ><label for="genders">Choose a gender:</label></td><td align="left"><select name="genders" id="genders" value={this.state.gender} onChange={this.onChangeGender.bind(this)}>
-                                                                                 <option value="female">F</option>
-                                                                                 <option value="male">M</option>
-                                                                                 </select> 
-                                                                             </td>
-                   </tr>
+                <div className="form-group">
+                    <label for="genders">Choose a gender</label><br/>
+                    <select className="form-control" name="genders" id="genders" value={this.state.gender} onChange={this.onChangeGender.bind(this)}>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                    </select> 
+                </div>
+       
+                <div className="form-group">
+                    <label>Email address</label>
+                    <input type="email" className="form-control" placeholder="Enter email" value={this.state.email} onChange={this.onChangeEmail.bind(this)} />
+                </div>
 
-                   <tr>
-                       <td>Email : </td><td><input type="text" name="email" placeholder="Enter your email" value={this.state.email} onChange={this.onChangeEmail.bind(this)} /></td>
-                   </tr>
+                <div className="form-group">
+                    <label>Username</label>
+                    <input type="text" className="form-control" placeholder="Enter Username" value={this.state.username} onChange={this.onChangeUsername.bind(this)} />
+                </div>
 
-                   <tr>
-                       <td>Username : </td><td><input type="text" name="username" placeholder="Enter your username" value={this.state.username} onChange={this.onChangeUsername.bind(this)} /></td>
-                   </tr>
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" className="form-control" placeholder="Enter password" value={this.state.password} onChange={this.onChangePassword.bind(this)} />
+                </div>
 
-                   <tr>
-                       <td><label for="roles">Choose a role:</label></td><td align="left"><select name="roles" id="roles" value={this.state.role} onChange={this.onChangeRole.bind(this)}>
-                                                                                 <option value="admin">admin</option>
-                                                                                 <option value="user">user</option>
-                                                                                 </select> 
-                                                                             </td>
-                   </tr>
-
-                   <tr>
-                       <td>Password : </td><td><input type="password" name="password" placeholder="Enter your password"  value={this.state.password} onChange={this.onChangePassword} /></td>
-                   </tr>
- 
-                   <tr>
-                       <td colSpan="2" align="center"><input type="submit" name="buttonOne" value="Signup"/></td>
-                   </tr>
-
-                   <tr>
-                       <td colSpan="2" align="center">{this.state.failed}</td>
-                   </tr>
-                   </tbody>
-
-               </Table>
-               </form>
-               
-               
-            </div>
-
-              
+                <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
+                <p className="forgot-password text-right">
+                    Already registered <a href="/login">sign in?</a>
+                </p>
+            </form>
+            </div>      
                 
             
         )

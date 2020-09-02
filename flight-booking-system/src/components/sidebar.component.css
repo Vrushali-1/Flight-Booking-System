@@ -1,0 +1,30 @@
+.bar{
+    height: auto;
+    width: 240px;
+    position: fixed;
+    z-index: 1;
+    margin-top: 10px;
+    margin-left: 10px;
+    border: 1px solid darkslateblue;
+    overflow-x: hidden;
+    padding: 8px 0;
+  background-color:#eee;
+}
+
+
+.list{
+    color: darkslateblue;
+    
+}
+
+.container-content{
+  border: 1px solid darkslateblue;
+  background-color:#eee;
+  margin-top: 25px;
+  margin-left: 340px;
+  height: auto;
+  width: 1010px;
+  display:flex;
+  justify-content : center;
+  align-items: center,
+}

@@ -29,7 +29,7 @@ exports.signup = (req,res,next) => {
                             gender:req.body.gender,
                             username:req.body.username,
                             email:req.body.email,
-                            role:req.body.role,
+                            role:"user",
                             password:hash
                   
                         });
@@ -56,7 +56,7 @@ exports.signup = (req,res,next) => {
 
 exports.login=(req,res,next)=>{
     
-    User.find({username:req.body.username})
+    User.find({username:req.body.username,role:req.body.role})
         .exec()
         .then( user =>{
              if(user.length < 1){

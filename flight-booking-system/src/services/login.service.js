@@ -4,18 +4,19 @@ const API_URL = "http://localhost:4000/user/";
 
 class LoginService {
   
-    login(username, password) {
+    login(username, password,role) {
     return axios
       .post(API_URL + "login", {
         username,
-        password
+        password,
+        role
       })
       .then(response => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
 
-        return response.data;
+        return response.data.user;
       });
       
   }
@@ -24,13 +25,12 @@ class LoginService {
     localStorage.removeItem("user");
   }
 
-  register(firstname,lastname,gender,email,role,username,password) {
+  register(firstname,lastname,gender,email,username,password) {
     return axios.post(API_URL + "signup", {
       firstname,
       lastname,
       gender,
       email,
-      role,
       username,
       password
     });

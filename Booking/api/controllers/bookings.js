@@ -7,10 +7,11 @@ exports.book= (req,res,next) => {
      const user=req.body.user;
      const quantity=req.body.quantity;
      const ammount=quantity*flight.fare;
+    
 
      const booking=new Booking({
         _id:new mongoose.Types.ObjectId(),
-        id:Math.floor(Math.random() * 100) + 1,
+        bookingNo:`${flight.name}${Math.floor(Math.random() * 100) + 1}${flight.date}`,
         user:user,
         flight:flight,
         quantity:quantity,
@@ -21,57 +22,26 @@ exports.book= (req,res,next) => {
      booking.save()
              .then( result => {
                 
-                 res.status(500).json({
+                 res.status(201).json({
                      message:"Booking done",
                      booking:result
                  })
              })
              .catch(err => {
-                 res.status(401).json({
+                 res.json({
                      error:err
                  })
+                 console.log(err);
              })
 
 
 }
 
-exports.book= (req,res,next) => {
-     
-     const flight=req.body.flight;
-     const user=req.body.user;
-     const quantity=req.body.quantity;
-     const ammount=quantity*flight.fare;
 
-     const booking=new Booking({
-        _id:new mongoose.Types.ObjectId(),
-        id:Math.floor(Math.random() * 100) + 1,
-        user:user,
-        flight:flight,
-        quantity:quantity,
-        ammount:ammount
-     });
-
-    
-     booking.save()
-             .then( result => {
-                
-                 res.status(500).json({
-                     message:"Booking done",
-                     booking:result
-                 })
-             })
-             .catch(err => {
-                 res.status(401).json({
-                     error:err
-                 })
-             })
-
-
-}
 
 exports.cancel= (req,res,next) => {
 
-    Booking.deleteOne({id:req.params.id})
+    Booking.deleteOne({_id:req.params.id})
     .exec()
     .then(result => {
         console.log("inside then");
@@ -87,8 +57,8 @@ exports.cancel= (req,res,next) => {
 }
 
 exports.search= (req,res,next) => {
-    Booking.find({id:req.params.id})
-    .select("flight quantity ammount ")
+    Booking.find({bookingNo:req.params.id})
+    .select()
     .exec()
     .then(result => {
          res.status(200).json({
@@ -101,3 +71,33 @@ exports.search= (req,res,next) => {
       });
     });
 }
+
+
+
+exports.userId=(req,res,next)=>{
+
+          const id=req.params.userId;
+          var bookings=[];
+          
+          Booking.find()
+                 .exec()
+                 .then(result => {
+                     bookings=result;
+                     bookings.filter(function(booking){
+                         if(booking.user._id===id){
+                         return booking;
+                         }
+                     })
+                     res.status(200).json({
+                         userBookings:bookings
+                     })
+                 })
+                   
+
+
+}
+
+
+
+
+

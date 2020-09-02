@@ -22,17 +22,11 @@ class Profile extends Component {
 
          
             <h3>
-              <strong>{currentUser.username}</strong> Profile
+              <strong>{currentUser.user.username}</strong>'s Profile
             </h3>
         
-          <p>
-            <strong>Token:</strong>{" "}
-            {currentUser.accessToken}
-          </p>
-          <p>
-            <strong>Id:</strong>{" "}
-            {currentUser.user._id}
-          </p>
+         
+          
           <p>
             <strong>Firstname:</strong>{" "}
             {currentUser.user.firstname}
@@ -44,10 +38,6 @@ class Profile extends Component {
           <p>
             <strong>Gender:</strong>{" "}
             {currentUser.user.gender}
-          </p>
-          <p>
-            <strong>Username:</strong>{" "}
-            {currentUser.user.username}
           </p>
           <p>
             <strong>Email:</strong>{" "}

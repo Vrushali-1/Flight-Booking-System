@@ -45,7 +45,11 @@ exports.add=(req,res,next)=>{
 exports.update=(req,res,next) => {
      
      const date=new Date(req.body.date);
-     Flight.update({_id:req.params.flightId},{date:date})
+     const name=req.body.name;
+     const from=req.body.from;
+     const to=req.body.to;
+     const fare=req.body.fare;
+     Flight.update({_id:req.params.flightId},{name:name,from:from,to:to,date:date,fare:fare })
            .exec()
            .then( result => {
                res.status(200).json({
