@@ -27,8 +27,9 @@ exports.add=(req,res,next)=>{
                            });
                        })
                        .catch( err => {
-                          res.status(500).send({
-                          error:err
+                          res.status(501).send({
+                          error:err,
+                           message:"Missing Parameters"
                          });
                        });
             }else{
@@ -36,6 +37,7 @@ exports.add=(req,res,next)=>{
                      message:"Flight exists!"
                  })
             }
+            
         })
 
     
@@ -87,7 +89,7 @@ exports.getOne=(req,res,next) => {
           .exec()
           .then( result => {
             res.status(200).json({
-              message:' Flight!!',
+              message:'Flight!!',
               flight:result
             });
           })

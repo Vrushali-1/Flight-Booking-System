@@ -50,6 +50,7 @@ export class Booking extends Component {
          const flight={
              name:this.state.flight.name,
              from:this.state.flight.from,
+             to:this.state.flight.to,
              date:this.state.flight.date,
              fare:this.state.flight.fare
          };

@@ -78,7 +78,7 @@ exports.login=(req,res,next)=>{
                                 const token=jwt.sign({
                                     userId:user[0]._id //paylaod
                                 }, 
-                                   process.env.JWT_KEY,
+                                   'secret',
                                    {
                                         expiresIn:"1h"
                                    }
@@ -119,20 +119,3 @@ exports.deleteUser=(req,res,next)=>{
             });
         });
 };
-
-
-exports.find=(req,res,next) =>{
-      const role=req.params.role;
-      User.find({role:role})
-          .exec()
-          .then(result => {
-               res.status(200).json({
-                   users:result
-               })
-          })
-          .catch(err => {
-            res.status(500).json({
-                 error:err
-            });
-          });
-}

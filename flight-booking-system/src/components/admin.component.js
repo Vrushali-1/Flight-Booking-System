@@ -35,8 +35,10 @@ class Admin extends Component {
         name:'',
         from:'',
         to:'',
-        date:'',
-        fare:''
+        date:Date,
+        fare:'',
+        dateValidate:true,
+        dateError:''
       }
   }
 
@@ -64,6 +66,7 @@ class Admin extends Component {
           date:e.target.value
     });
   }
+
 
   onChangeFare(e){
     this.setState({
@@ -129,7 +132,8 @@ class Admin extends Component {
                           from:'',
                           to:'',
                           date:'',
-                          fare:''
+                          fare:'',
+                         
                         })
                       })
                       .catch(err => {
@@ -149,6 +153,8 @@ class Admin extends Component {
   }
 
   updateFlight(id){
+
+
                 console.log("inside update");
                 console.log(id);
 
@@ -167,7 +173,8 @@ class Admin extends Component {
                       from:'',
                       to:'',
                       date:'',
-                      fare:''
+                      fare:'',
+                     
                     })
                   })
                   .catch(err => {
@@ -206,7 +213,7 @@ class Admin extends Component {
       
      
       </div>
-      
+    
       <Table striped bordered hover className="table">
       <thead>
         <th>Flight Name</th>
@@ -221,7 +228,7 @@ class Admin extends Component {
             <td><input type="textbox" className="form-control" placeholder="Enter flight name" value={this.state.name} onChange={this.onChangeName}/></td>
             <td><input type="textbox" className="form-control" placeholder="Enter from" value={this.state.from} onChange={this.onChangeFrom}/></td>
             <td><input type="textbox" className="form-control" placeholder="Enter to" value={this.state.to} onChange={this.onChangeTo}/></td>
-            <td><input type="textbox" className="form-control" placeholder="Enter date" value={this.state.date} onChange={this.onChangeDate}/></td>
+            <td><input type="date" className="form-control" placeholder="Enter date" name="date" value={this.state.date} onChange={this.onChangeDate}/></td> 
             <td><input type="textbox" className="form-control" placeholder="Enter fare" value={this.state.fare} onChange={this.onChangeFare}/></td>
             <td colSpan="2" >
                         <Button
@@ -242,7 +249,7 @@ class Admin extends Component {
                    <td id="t1" ><input type="textbox"  className="form-control" defaultValue={flight.name} onChange={this.onChangeName}/></td>
                    <td id="t2" ><input type="textbox"  className="form-control" defaultValue={flight.from} onChange={this.onChangeFrom} /></td>
                    <td id="t3" ><input type="textbox"  className="form-control" defaultValue={flight.to} onChange={this.onChangeTo}/></td>
-                   <td id="t4" ><input type="textbox"  className="form-control" defaultValue={flight.date.toString().split('T')[0]} onChange={this.onChangeDate}/></td>
+                   <td id="t4" ><input type="date"  className="form-control" defaultValue={flight.date.toString().split('T')[0]} onChange={this.onChangeDate}/></td>
                    <td id="t5" ><input type="textbox"  className="form-control" defaultValue={flight.fare} onChange={this.onChangeFare}/></td>
                    <td>
                         <Button

@@ -11,7 +11,7 @@ exports.book= (req,res,next) => {
 
      const booking=new Booking({
         _id:new mongoose.Types.ObjectId(),
-        bookingNo:`${flight.name}${Math.floor(Math.random() * 100) + 1}${flight.date}`,
+        bookingNo:`${flight.name}${Math.floor(Math.random() * 100) + 1}`,
         user:user,
         flight:flight,
         quantity:quantity,
@@ -82,12 +82,13 @@ exports.userId=(req,res,next)=>{
           Booking.find()
                  .exec()
                  .then(result => {
-                     bookings=result;
-                     bookings.filter(function(booking){
-                         if(booking.user._id===id){
-                         return booking;
-                         }
-                     })
+                     
+                    for(i=0;i<result.length;i++){
+                        if(result[i].user._id===id){
+                            bookings.push(result[i]);
+                        }
+                    }
+                     console.log(bookings);
                      res.status(200).json({
                          userBookings:bookings
                      })

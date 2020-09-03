@@ -46,6 +46,7 @@ export class User extends Component {
                                 myBookingss:response
                             })
                        })
+                       console.log(this.state.myBookingss);
     }
 
     search(){

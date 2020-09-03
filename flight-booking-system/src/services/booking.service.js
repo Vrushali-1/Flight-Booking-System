@@ -50,6 +50,7 @@ class BookingService{
 
       userBookings(){
           const userId=LoginService.getCurrentUser().user._id;
+          console.log("current users id: "+userId);
           return axios
                  .get(API_URL+"searchByUserId/"+userId,{
                      headers:authHeader()

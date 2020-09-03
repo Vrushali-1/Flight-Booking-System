@@ -26,7 +26,9 @@ class Home extends Component{
             showTable:false,
             hasError:false,
             currentUser:undefined,
-            redirect:'/user'
+            redirect:'/user',
+            dateValidate:true,
+            dateError:''
         };
     }
 
@@ -57,7 +59,9 @@ class Home extends Component{
         this.setState({
             date:e.target.value
         })
+        
     }
+
 
     book(id){
         if(this.state.currentUser){
@@ -76,6 +80,7 @@ class Home extends Component{
 
    
     search(){
+        console.log(this.state.date);
         SearchService.search(this.state.from,this.state.to,this.state.date,this.state.fare)
                         .then(res => {
                             this.setState({...this.state,
@@ -98,6 +103,9 @@ class Home extends Component{
                 marginBottom: "100px"}}
             >
                 <div>
+ 
+                
+
                 <form className="form">
                 <div style={{textAlign:"center"}}>
                 <FlightIcon style={{fontSize:70}} /><br/>
@@ -118,6 +126,7 @@ class Home extends Component{
                 <div className="form-group">
                     <label>Date</label>
                     <input type="date" className="form-control" value={this.state.date} onChange={this.onChangeDate} placeholder="Select Date" />
+                    
                 </div>
 
                 
